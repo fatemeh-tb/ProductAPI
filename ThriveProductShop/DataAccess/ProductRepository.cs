@@ -2,33 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using ThriveProductShop.models;
+using Newtonsoft.Json;
+using ProductShop.models;
 
 
-namespace ThriveProductShop.DataAccess
+namespace ProductShop.DataAccess
 {
     public class ProductRepository
     {
-        private readonly ThriveProductShopContext _dbContext = new ThriveProductShopContext();
+        private readonly ProductShopContext _dbContext = new ProductShopContext();
 
         
-        public int Create(ProductGroup product)
+        public int CreateProduct(Product product)
         {
-            using var db = new ThriveProductShopContext();
-            db.ProductGroups.Add(product);
+            using var db = new ProductShopContext();
+            db.Products.Add(product);
             var result = db.SaveChanges();
-
             return result;
         }
 
-        public List<ProductList> GetAll()
+
+        public int CreateProductGroup(ProductGroup productGroup)
         {
-            using var db = new ThriveProductShopContext();
-            var products = db.ProductLists.ToList();
-            return products;
+            using var db = new ProductShopContext();
+            db.ProductGroups.Add(productGroup);
+            var result = db.SaveChanges();
+            return result;
         }
         
-        public IEnumerable<ProductGroup> GetAllGroups()
+        
+        public IEnumerable<ProductGroup> GetAll()
         {
             var groups = _dbContext
                 .ProductGroups
@@ -36,7 +39,7 @@ namespace ThriveProductShop.DataAccess
                 {
                     Id = t.Id,
                     Title = t.Title,
-                    ProductLists = (ICollection<ProductList>) t.ProductLists.Select(p => new ProductList()
+                    Products = (ICollection<Product>) t.Products.Select(p => new Product()
                     {
                         Id = p.Id,
                         Name = p.Name,
@@ -49,30 +52,49 @@ namespace ThriveProductShop.DataAccess
             return groups;
         }
 
-        public ProductList GetById(long id)
+        
+        public Product GetProductById(long id)
         {
-            using var db = new ThriveProductShopContext();
-            var product = db.ProductLists.SingleOrDefault(p => p.Id == id);
+            using var db = new ProductShopContext();
+            var product = db.Products.SingleOrDefault(p => p.Id == id);
+            return product;
+        }
+
+        
+        public ProductGroup GetProductGroupById(long id)
+        {
+            using var db = new ProductShopContext();
+            var product = db.ProductGroups.SingleOrDefault(p => p.Id == id);
             return product;
         }
         
         
-        public bool Remove(ProductList product)
+        public bool RemoveProduct(Product product)
         {
-            using var db = new ThriveProductShopContext();
-            db.ProductLists.Attach(product);
-            db.ProductLists.Remove(product);
+            using var db = new ProductShopContext();
+            db.Products.Attach(product);
+            db.Products.Remove(product);
             return db.SaveChanges() > 0;
         }
         
-        public bool Update(ProductGroup product)
+        
+        public bool RemoveProductGroup(ProductGroup productGroup)
         {
-            using var db = new ThriveProductShopContext();
+            using var db = new ProductShopContext();
+            db.ProductGroups.Attach(productGroup);
+            db.ProductGroups.Remove(productGroup);
+            return db.SaveChanges() > 0;
+        }
+
+        
+        public bool UpdateProduct(ProductGroup product)
+        {
+            using var db = new ProductShopContext();
             var productToUpdate = db.ProductGroups.FirstOrDefault(p => p.Id == product.Id);
             if (productToUpdate is not null)
             {
                 productToUpdate.Title = product.Title;
-                productToUpdate.ProductLists = product.ProductLists;
+                productToUpdate.Products = product.Products;
                 return db.SaveChanges() > 0;
             }
 

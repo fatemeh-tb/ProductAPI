@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ThriveProductShop.models
+namespace ProductShop.models
 {
-    public partial class ProductList
+    public partial class Product
     {
-        public ProductList()
+        public Product()
         {
  
         }
@@ -17,6 +17,6 @@ namespace ThriveProductShop.models
         public decimal? Price { get; set; }
         public int? ProductGroupId { get; set; }
 
-        public ProductGroup? ProductGroup { get; set; }
+        public virtual ProductGroup? ProductGroup { get; set; }
     }
 }

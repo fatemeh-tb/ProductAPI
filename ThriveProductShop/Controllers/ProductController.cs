@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ThriveProductShop.models;
-using ThriveProductShop.Services;
+using ProductShop.models;
+using ProductShop.models.External;
+using ProductShop.Services;
 
-namespace ThriveProductShop.Controllers
+namespace ProductShop.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -16,38 +17,45 @@ namespace ThriveProductShop.Controllers
     {
         private readonly DataService _dataService;
 
-        public ProductController(ThriveProductShopContext context)
+        public ProductController(ProductShopContext context)
         {
             _dataService = new DataService();
         }
 
         
         [HttpPost]
-        public int CreateProduct(ProductGroup product)
+        public int CreateProduct(productDto productDto)
         {
-            return _dataService.CreateProduct(product);
+            return _dataService.CreateProduct(productDto);
             
         }
 
-        
-        [HttpGet("/all")]
-        public List<ProductList> GetProducts()
+
+        [HttpPost("/productGroup")]
+        public int CreateProductGroup(ProductGroupDto productGroupDto)
         {
-            return _dataService.GetProducts();
+            return _dataService.CreateProductGroup(productGroupDto);
         }
         
         
-        [HttpGet]
-        public IEnumerable<ProductGroup> GetProductsGroup()
+        [HttpGet("/All")]
+        public IEnumerable<ProductGroup> GetAll()
         {
-            return _dataService.GetProductsGroup();
+            return _dataService.GetAll();
         }
         
         
         [HttpGet("{id}")]
-        public ProductList GetProductById(long id)
+        public Product GetProductById(long id)
         {
             return _dataService.GetProductById(id);
+        }
+        
+        
+        [HttpGet("/ProductGroups/{id}")]
+        public ProductGroup GetProductGroupbyId(long id)
+        {
+            return _dataService.GetProductGroupById(id);
         }
 
         
@@ -55,6 +63,13 @@ namespace ThriveProductShop.Controllers
         public bool DeleteProduct(long id)
         {
             return _dataService.DeleteProduct(id);
+        }
+        
+        
+        [HttpDelete("/deleteGroup/{id}")]
+        public bool DeleteProductGroup(long id)
+        {
+            return _dataService.DeleteProductGroup(id);
         }
         
         

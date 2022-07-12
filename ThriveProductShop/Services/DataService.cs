@@ -1,9 +1,10 @@
 ﻿
 
-using ThriveProductShop.DataAccess;
-using ThriveProductShop.models;
+using ProductShop.DataAccess;
+using ProductShop.models;
+using ProductShop.models.External;
 
-namespace ThriveProductShop.Services
+namespace ProductShop.Services
 {
 
     public class DataService
@@ -15,35 +16,62 @@ namespace ThriveProductShop.Services
             _productRepository = new ProductRepository();
         }
         
-        public int CreateProduct(ProductGroup product)
+        
+        public int CreateProduct(productDto productDto)
         {
-            return _productRepository.Create(product);
+            var product = new Product();
+            product.Name = productDto.Name;
+            product.Description = productDto.Description;
+            product.ImagePath = productDto.ImagePath;
+            product.Price = productDto.Price;
+            product.ProductGroupId = productDto.ProductGroupId;
+            return _productRepository.CreateProduct(product);
         }
 
-        public List<ProductList> GetProducts()
+
+        public int CreateProductGroup(ProductGroupDto productGroupDto)
+        {
+            var productGroup = new ProductGroup();
+            productGroup.Title = productGroupDto.Title;
+            return _productRepository.CreateProductGroup(productGroup);
+        }
+        
+        
+        public IEnumerable<ProductGroup> GetAll()
         {
             return _productRepository.GetAll();
         }
         
-        public IEnumerable<ProductGroup> GetProductsGroup()
+        
+        public Product GetProductById(long id)
         {
-            return _productRepository.GetAllGroups();
+            return _productRepository.GetProductById(id);
         }
         
-        public ProductList GetProductById(long id)
+        
+        public ProductGroup GetProductGroupById(long id)
         {
-            return _productRepository.GetById(id);
+            return _productRepository.GetProductGroupById(id);
         }
 
+        
         public bool DeleteProduct(long id)
         {
-            var product = _productRepository.GetById(id);
-            return _productRepository.Remove(product);
+            var product = _productRepository.GetProductById(id);
+            return _productRepository.RemoveProduct(product);
         }
+        
+        
+        public bool DeleteProductGroup(long id)
+        {
+            var product = _productRepository.GetProductGroupById(id);
+            return _productRepository.RemoveProductGroup(product);
+        }
+        
         
         public bool UpdateProduct(ProductGroup product)
         {
-            return _productRepository.Update(product);
+            return _productRepository.UpdateProduct(product);
         }
     }
 }

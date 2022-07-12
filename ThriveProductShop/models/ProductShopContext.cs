@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.CodeAnalysis.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace ThriveProductShop.models
+namespace ProductShop.models
 {
-    public partial class ThriveProductShopContext : DbContext
+    public partial class ProductShopContext : DbContext
     {
-        public ThriveProductShopContext()
+        public ProductShopContext()
         {
         }
 
-        public ThriveProductShopContext(DbContextOptions<ThriveProductShopContext> options)
+        public ProductShopContext(DbContextOptions<ProductShopContext> options)
             : base(options)
         {
         }
         
         public virtual DbSet<ProductGroup> ProductGroups { get; set; } = null!;
-        public virtual DbSet<ProductList> ProductLists { get; set; } = null!;
+        public virtual DbSet<Product> Products { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -38,9 +39,9 @@ namespace ThriveProductShop.models
                 entity.Property(e => e.Title).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<ProductList>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
-                entity.ToTable("ProductList");
+                entity.ToTable("Product");
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(255)
@@ -59,7 +60,7 @@ namespace ThriveProductShop.models
                 
                 
                 entity.HasOne(d => d.ProductGroup)
-                    .WithMany(p => p.ProductLists)
+                    .WithMany(p => p.Products)
                     .HasForeignKey(d => d.ProductGroupId)
                     .HasConstraintName("FK_ProductList_ProductGroup");
             });
@@ -70,4 +71,5 @@ namespace ThriveProductShop.models
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
+    
 }

@@ -1,6 +1,6 @@
-using ThriveProductShop.models;
+using ProductShop.models;
 
-namespace ThriveProductShop
+namespace ProductShop
 {
     public class Program
     {

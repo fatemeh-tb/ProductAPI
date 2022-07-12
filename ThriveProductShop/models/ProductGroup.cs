@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ThriveProductShop.models
+namespace ProductShop.models
 {
     public partial class ProductGroup
     {
         public ProductGroup()
         {
-            ProductLists = new HashSet<ProductList>();
+            Products = new HashSet<Product>();
         }
 
         public int Id { get; set; }
         public string? Title { get; set; }
 
-        public virtual ICollection<ProductList> ProductLists { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

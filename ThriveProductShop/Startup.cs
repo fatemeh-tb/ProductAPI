@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.OpenApi.Models;
-using ThriveProductShop.models;
+using ProductShop.models;
 
-namespace ThriveProductShop
+namespace ProductShop
 {
     public class Startup
     {
@@ -18,10 +19,10 @@ namespace ThriveProductShop
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "ThriveProductShop", Version = "v1"}); });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "ProductShop", Version = "v1"}); });
 
-            services.AddDbContext<ThriveProductShopContext>(opt =>
-                opt.UseInMemoryDatabase("ThriveProductShop"));
+            services.AddDbContext<ProductShopContext>(opt =>
+                opt.UseInMemoryDatabase("ProductShop"));
             
             services.AddCors(options =>
             {
@@ -41,7 +42,7 @@ namespace ThriveProductShop
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ThriveProductShop v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProductShop v1"));
             }
 
             app.UseCors("CorsPolicy");
