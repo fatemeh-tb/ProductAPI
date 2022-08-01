@@ -69,9 +69,9 @@ namespace ProductShop.Services
         }
         
         
-        public bool UpdateProduct(ProductGroup product)
+        public bool UpdateProduct(productDto productDto)
         {
-            return _productRepository.UpdateProduct(product);
+            return _productRepository.UpdateProduct(productDto);
         }
     }
 }

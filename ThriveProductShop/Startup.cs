@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using ProductShop.models;
 
@@ -10,20 +10,29 @@ namespace ProductShop
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            var db = new ProductShopContext();
+            db.Database.EnsureCreated();
         }
 
+        
         public IConfiguration Configuration { get; }
+        // public DatabaseFacade DatabaseFacade { get; set; }
 
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "ProductShop", Version = "v1"}); });
+            services.AddSwaggerGen(
+                c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "ProductShop", Version = "v1"}); });
 
-            services.AddDbContext<ProductShopContext>(opt =>
-                opt.UseInMemoryDatabase("ProductShop"));
             
+            services.AddDbContext<ProductShopContext>(opt =>
+            {
+                opt.UseSqlServer(
+                    Configuration.GetConnectionString("ProductDbContextConnection"));
+            });
+
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ProductShop.models;
+using ProductShop.models.External;
 
 
 namespace ProductShop.DataAccess
@@ -33,7 +34,7 @@ namespace ProductShop.DataAccess
         
         public IEnumerable<ProductGroup> GetAll()
         {
-            var groups = _dbContext
+            var result = _dbContext
                 .ProductGroups
                 .Select(t => new ProductGroup()
                 {
@@ -46,10 +47,11 @@ namespace ProductShop.DataAccess
                         Description = p.Description,
                         ImagePath = p.ImagePath,
                         Price = p.Price,
+                        ProductGroupId = p.ProductGroupId,
                     })
                 }).ToList();
 
-            return groups;
+            return result;
         }
 
         
@@ -87,14 +89,17 @@ namespace ProductShop.DataAccess
         }
 
         
-        public bool UpdateProduct(ProductGroup product)
+        public bool UpdateProduct(productDto productDto)
         {
             using var db = new ProductShopContext();
-            var productToUpdate = db.ProductGroups.FirstOrDefault(p => p.Id == product.Id);
+            var productToUpdate = db.Products.FirstOrDefault(p => p.Id == productDto.Id);
             if (productToUpdate is not null)
             {
-                productToUpdate.Title = product.Title;
-                productToUpdate.Products = product.Products;
+                productToUpdate.Name = productDto.Name;
+                productToUpdate.Description = productDto.Description;
+                productToUpdate.Price = productDto.Price;
+                productToUpdate.ImagePath = productDto.ImagePath;
+                productToUpdate.ProductGroupId = productDto.ProductGroupId;
                 return db.SaveChanges() > 0;
             }
 

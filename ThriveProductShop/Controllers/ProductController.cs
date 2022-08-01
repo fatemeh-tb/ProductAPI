@@ -74,9 +74,9 @@ namespace ProductShop.Controllers
         
         
         [HttpPut]
-        public bool UpdateProduct(ProductGroup product)
+        public bool UpdateProduct(productDto productDto)
         {
-            return _dataService.UpdateProduct(product);
+            return _dataService.UpdateProduct(productDto);
         }
 
     }
