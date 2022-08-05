@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductShop.models;
-using ProductShop.models.External;
 using ProductShop.Services;
+using ThriveProductShop.models.ProductDomain;
+using ThriveProductShop.models.ProductDomain.External;
 
 namespace ProductShop.Controllers
 {

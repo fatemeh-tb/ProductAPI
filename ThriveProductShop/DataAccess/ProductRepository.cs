@@ -4,7 +4,8 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ProductShop.models;
-using ProductShop.models.External;
+using ThriveProductShop.models.ProductDomain;
+using ThriveProductShop.models.ProductDomain.External;
 
 
 namespace ProductShop.DataAccess
