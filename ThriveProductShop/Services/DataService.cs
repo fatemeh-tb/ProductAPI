@@ -2,7 +2,8 @@
 
 using ProductShop.DataAccess;
 using ProductShop.models;
-using ProductShop.models.External;
+using ThriveProductShop.models.ProductDomain;
+using ThriveProductShop.models.ProductDomain.External;
 
 namespace ProductShop.Services
 {
