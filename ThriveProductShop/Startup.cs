@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProductShop.Identity;
 using ProductShop.models;
+using ThriveProductShop.JwtFeatures;
 
 namespace ProductShop
 {
@@ -15,8 +16,6 @@ namespace ProductShop
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            var db = new ProductShopContext();
-            db.Database.EnsureCreated();
         }
 
 
@@ -28,6 +27,7 @@ namespace ProductShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAutoMapper(typeof(Program));
             services.AddSwaggerGen(
                 c =>
                 {
@@ -75,6 +75,8 @@ namespace ProductShop
                 .AddEntityFrameworkStores<UserAuthDbContext>()
                 .AddDefaultTokenProviders();
 
+            var jwtSettings = Configuration.GetSection("JwtSettings");
+
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -90,13 +92,17 @@ namespace ProductShop
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
-                        ValidIssuer = Configuration["JWT:ValidIssuer"],
-                        ValidAudience = Configuration["JWT:ValidAudience"],
-                        IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:SecretKey"]))
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = jwtSettings["ValidIssuer"],
+                        ValidAudience = jwtSettings["ValidAudience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                            .GetBytes(jwtSettings.GetSection("SecretKey").Value))
                     };
                 });
 
+            services.AddScoped<JwtHandler>();
+            
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "TZoerzjDxnjIATsJjDGBnipCqRA0OlyRJb6SJPnlklbQQo8ZdrsbgR1jPIODW1VclSviGHUON9b3jkLYDV+Isg==",
+  "dgSpecHash": "elHnJYfT8wrj68RlvSsy5YJSDZ6/wJdYBXq0aqsLZBX9gVjeZS+YKy6rfjuuaDtXb7d8lltscXJdaMcQqZvkLg==",
   "success": true,
-  "projectFilePath": "D:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj",
+  "projectFilePath": "F:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Fatemeh\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\Fatemeh\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
@@ -47,7 +49,7 @@
     "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.codeanalysis.visualbasic.workspaces\\4.0.0\\microsoft.codeanalysis.visualbasic.workspaces.4.0.0.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.0.0\\microsoft.codeanalysis.workspaces.common.4.0.0.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.codeanalysis.workspaces.msbuild\\4.0.0\\microsoft.codeanalysis.workspaces.msbuild.4.0.0.nupkg.sha512",
-    "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\Fatemeh\\.nuget\\packages\\microsoft.data.sqlite\\6.0.6\\microsoft.data.sqlite.6.0.6.nupkg.sha512",

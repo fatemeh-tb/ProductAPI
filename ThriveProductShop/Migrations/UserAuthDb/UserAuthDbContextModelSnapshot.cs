@@ -47,6 +47,22 @@ namespace ThriveProductShop.Migrations.UserAuthDb
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "49b435ab-8934-401e-b27b-5f26d6651a6f",
+                            ConcurrencyStamp = "e2c0aca0-4100-483c-a2a2-00c6b8194ab2",
+                            Name = "Fatemeh",
+                            NormalizedName = "FATEMEH"
+                        },
+                        new
+                        {
+                            Id = "12105dfb-ef02-4bcc-b6a5-2a3f29c5f2e4",
+                            ConcurrencyStamp = "a33554bc-759a-47c0-a716-ca509f8ba07c",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

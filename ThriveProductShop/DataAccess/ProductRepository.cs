@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using ProductShop.Identity;
 using ProductShop.models;
+using ProductShop.models.UserDomain;
 using ThriveProductShop.models.ProductDomain;
 using ThriveProductShop.models.ProductDomain.External;
 
@@ -62,7 +64,7 @@ namespace ProductShop.DataAccess
             var product = db.Products.SingleOrDefault(p => p.Id == id);
             return product;
         }
-
+        
         
         public ProductGroup GetProductGroupById(long id)
         {

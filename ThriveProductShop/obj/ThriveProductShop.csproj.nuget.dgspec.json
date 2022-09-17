@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj": {}
+    "F:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj": {}
   },
   "projects": {
-    "D:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj": {
+    "F:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj",
+        "projectUniqueName": "F:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj",
         "projectName": "ThriveProductShop",
-        "projectPath": "D:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj",
+        "projectPath": "F:\\source\\ThriveProductShop\\ThriveProductShop\\ThriveProductShop.csproj",
         "packagesPath": "C:\\Users\\Fatemeh\\.nuget\\packages\\",
-        "outputPath": "D:\\source\\ThriveProductShop\\ThriveProductShop\\obj\\",
+        "outputPath": "F:\\source\\ThriveProductShop\\ThriveProductShop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fatemeh\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.7, )"
